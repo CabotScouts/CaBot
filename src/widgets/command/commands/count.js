@@ -6,8 +6,8 @@ module.exports = {
   ownersOnly: false,
   guildOnly: false,
   requireArgs: false,
-  deleteCommand: true,
-  cooldown: 10,
+  deleteCommand: false,
+  cooldown: 60,
   disabled: false,
   messageExecute: async (message, args) => {
     message.channel.send(`:money_with_wings: ${getCount()}`)
