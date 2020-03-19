@@ -1,17 +1,28 @@
 const storage = require('node-persist')
-var { incrementCount, getCount } = require('../caches/countCache')
 
 module.exports = {
-  name: 'count',
+  name: 'count2',
   aliases: [],
-  ownersOnly: false,
+  ownersOnly: true,
   guildOnly: false,
   requireArgs: false,
   deleteCommand: false,
-  cooldown: 60,
+  cooldown: 0,
   disabled: false,
   messageExecute: async (message, args) => {
-    message.channel.send(`:money_with_wings: ${getCount()}`)
-    incrementCount()
+    storage.init()
+    var count = await storage.getItem('counter') + 1
+
+    if(count == 100) {
+      // do cool things
+      var emoji = ':tada:'
+      count = 1
+    }
+    else {
+      var emoji = ':money_with_wings:'
+    }
+
+    message.channel.send(`${emoji} ${count.toString()}`)
+    await storage.setItem('counter', count)
   }
 };

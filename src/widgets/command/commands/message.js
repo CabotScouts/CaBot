@@ -8,17 +8,17 @@ module.exports = {
   cooldown: 10,
   disabled: false,
   messageExecute: async (message, args) => {
-    if(!message.member.roles.cache.find(r => r.name === 'leader')) return;
+    if(!message.member.roles.cache.find(r => r.name === 'leader')) return
 
-    channelName = args.shift();
-    send = args.join(' ');
+    channelName = args.shift()
+    send = args.join(' ')
 
-    channel = message.client.channels.cache.find(ch => ch.name === channelName);
+    channel = message.client.channels.cache.find(ch => ch.name === channelName)
     if(channel) {
-      if(send.length > 0) channel.send(send);
+      if(send.length > 0) channel.send(send)
     }
     else {
-      message.channel.send(`:warning: unknown channel '${channelName}'`);
+      message.channel.send(`:warning: unknown channel '${channelName}'`)
     }
   }
 };

@@ -1,4 +1,3 @@
-const { storeAnswer, hasAnswer } = require('../caches/riddleCache')
 const axios = require('axios')
 const api = "";
 
