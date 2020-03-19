@@ -1,15 +1,26 @@
-const exclude = [ 'system', 'verify', 'info' ]
+const channels = [ 'chat' ]
 
 module.exports = {
   name: 'announce',
   aliases: ['a'],
-  ownersOnly: true,
+  ownersOnly: false,
   guildOnly: true,
   requireArgs: true,
   deleteCommand: false,
   cooldown: 0,
   disabled: false,
   messageExecute: async (message, args) => {
-    // post a message in every channel (besides those excluded)
+    if(!message.member.roles.cache.find(r => r.name === 'leader')) return
+
+    var announcement = args.join(' ')
+    var embed = {
+      "embed": {
+        "title": `:loudspeaker:`,
+        "description" : announcement,
+        "color": 16580705
+      }
+    }
+
+    channels.map(ch => message.client.channels.cache.find(lst => lst.name === ch).send(embed))
   }
 };
