@@ -1,3 +1,5 @@
 node_modules/
 credentials.json
+google-service-account.json
 token.json
+*.sqlite
