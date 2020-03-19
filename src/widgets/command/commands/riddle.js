@@ -10,7 +10,7 @@ module.exports = {
   requireArgs: false,
   deleteCommand: false,
   cooldown: 10,
-  disabled: false,
+  disabled: true,
   messageExecute: async (message, args) => {
     if(hasAnswer(channel)) {
       message.channel.send(`You've already had a riddle - use !answer to check your answer before requesting another`)
