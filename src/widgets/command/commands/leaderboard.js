@@ -33,7 +33,7 @@ module.exports = {
 
       message.channel.send({
         "embed": {
-          "title" : title,
+          // "title" : title,
           "color": 3447003,
           "fields": fields
         }
@@ -42,7 +42,7 @@ module.exports = {
     else {
       message.channel.send({
         "embed": {
-          "title" : title,
+          // "title" : title,
           "description": "The leaderboard is empty!",
           "color": 3447003
         }
