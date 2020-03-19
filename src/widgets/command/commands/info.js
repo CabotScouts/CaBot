@@ -9,14 +9,37 @@ module.exports = {
   deleteCommand: false,
   cooldown: 10,
   disabled: false,
-  messageExecute: async (message, args) =>
-    message.channel.send(`:fleur_de_lis: Hello, I'm CaBot, here are some things I can do :fleur_de_lis:\n
-**${prefixes[0]}info** - show this help message
-**${prefixes[0]}topic <topic>** - make a new chat topic
-**${prefixes[0]}count** - something weird with numbers :man_shrugging:
-**${prefixes[0]}joke** - show a joke
-**${prefixes[0]}leaderboard** - show the current leaderboard`)
+  messageExecute: async (message, args) => {
+    message.channel.send({
+      "embed": {
+        "title": "Hello, I'm CaBot :fleur_de_lis:",
+        "description" : "Here are some things I can do:",
+        "color": 16580705,
 
-  //**${prefixes[0]}riddle** - posts a riddle (**${prefixes[0]}answer** for the answer)
+        "fields": [
+          {
+            "name": "!info",
+            "value": "shows this help message"
+          },
+          {
+            "name": "!topic <topic>",
+            "value": "makes a new discussion topic"
+          },
+          {
+            "name": "!joke",
+            "value": "posts a (very bad) dad joke"
+          },
+          {
+            "name": "!count",
+            "value": "does something weird with numbers"
+          },
+          {
+            "name": "!leaderboard",
+            "value": "where do you rank"
+          }
+        ]
+      }
+    })
+  }
     // TODO: if in #leaders send leader commands too
 };
