@@ -1,3 +1,4 @@
+const storage = require('node-persist')
 var { incrementCount, getCount } = require('../caches/countCache')
 
 module.exports = {
