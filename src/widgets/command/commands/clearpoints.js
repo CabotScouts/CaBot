@@ -14,7 +14,7 @@ module.exports = {
     await storage.setItem('leaderboard', [])
     await message.channel.send({
       "embed" : {
-        "title" : "Points cleared",
+        "description" : "Points cleared",
         "color": 15105570,
       }
     })
