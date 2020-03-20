@@ -10,7 +10,7 @@ module.exports = {
   cooldown: 0,
   disabled: false,
   messageExecute: async (message, args) => {
-    if(!message.member.roles.cache.find(r => r.name === 'leader')) return
+    if(!message.member.roles.cache.find(r => (r.name === 'leader' || r.name === 'bot'))) return
 
     await storage.init()
     var leaderboard = await storage.getItem('leaderboard') || []
@@ -44,7 +44,7 @@ module.exports = {
       await storage.setItem('leaderboard', remainder)
       await message.channel.send({
         "embed" : {
-          "title" : "Point awarded :medal:",
+          "description" : "Point awarded :medal:",
           "color": 3447003,
         }
       })
