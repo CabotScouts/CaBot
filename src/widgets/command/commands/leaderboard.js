@@ -20,11 +20,11 @@ module.exports = {
       const medals = [':first_place:', ':second_place:', ':third_place:']
       var fields = []
       for(i = 0; i < num; i++) {
-        var user = message.guild.members.cache.get(leaderboard[i].id)
+        // var user = message.guild.members.cache.get(leaderboard[i].id)
         var points = leaderboard[i].points
         var name = `<@!${leaderboard[i].id}>`
         var plural = (points > 1) ? 'points' : 'point'
-        
+
         fields.push({
           "name" : `${medals[i]} - ${points} ${plural}`,
           "value" : `${name}\n`
