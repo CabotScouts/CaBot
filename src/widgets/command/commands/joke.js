@@ -14,7 +14,12 @@ module.exports = {
     axios.get(api, {
       headers : { 'User-Agent': 'Cabot Explorers on Discord', 'Accept': 'application/json' }
     }).then(function(response) {
-      message.channel.send(response.data.joke)
+      message.channel.send({
+        "embed" : {
+          "description" : response.data.joke,
+          "color" : 1146986
+        }
+      })
     })
   }
 };
