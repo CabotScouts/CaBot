@@ -3,7 +3,7 @@ const storage = require('node-persist')
 module.exports = {
   name: 'point',
   aliases: [],
-  ownersOnly: true,
+  ownersOnly: false,
   guildOnly: false,
   requireArgs: false,
   deleteCommand: false,

@@ -3,7 +3,7 @@ const storage = require('node-persist')
 module.exports = {
   name: 'leaderboard',
   aliases: [],
-  ownersOnly: true,
+  ownersOnly: false,
   guildOnly: false,
   requireArgs: false,
   deleteCommand: false,
@@ -22,9 +22,9 @@ module.exports = {
       for(i = 0; i < num; i++) {
         var user = message.guild.members.cache.get(leaderboard[i].id)
         var points = leaderboard[i].points
-
         var name = `<@!${leaderboard[i].id}>`
         var plural = (points > 1) ? 'points' : 'point'
+        
         fields.push({
           "name" : `${medals[i]} - ${points} ${plural}`,
           "value" : `${name}\n`
