@@ -12,7 +12,7 @@ module.exports = async message => {
       title: sheetTitle,
       headerValues: ['time', 'userId', 'userName', 'message', 'embeds', 'attachments', 'bot']
      })
-    addSheet(sheetTitle, sheet.sheetId)
+    await addSheet(sheetTitle, sheet.sheetId)
     sheet = await doc.sheetsById[sheet.sheetId]
   }
   else {
