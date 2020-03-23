@@ -13,6 +13,11 @@ module.exports = {
     var num = Number(args[0])
     await storage.init()
     await storage.setItem('counter', num)
-    await message.channel.send(`:wrench: counter set to ${num}`)
+    await message.channel.send({
+      "embed" : {
+        "description" : `:wrench: counter set to ${num}`,
+        "color": 12745742,
+      }
+    })
   }
 };

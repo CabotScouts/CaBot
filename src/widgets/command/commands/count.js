@@ -24,7 +24,12 @@ module.exports = {
       var emoji = ':money_with_wings:'
     }
 
-    message.channel.send(`${emoji} ${count.toString()}`)
+    message.channel.send({
+      "embed" : {
+        "description" : `${emoji} ${count.toString()}`,
+        "color": 12745742,
+      }
+    })
 
     count = (count >= 100) ? 0 : count
     await storage.setItem('counter', count)

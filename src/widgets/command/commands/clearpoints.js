@@ -1,7 +1,7 @@
 const storage = require('node-persist')
 
 module.exports = {
-  name: 'clearpoints2',
+  name: 'clearpoints',
   aliases: [],
   ownersOnly: true,
   guildOnly: false,
