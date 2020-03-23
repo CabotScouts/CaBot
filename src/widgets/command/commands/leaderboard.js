@@ -1,5 +1,7 @@
 const storage = require('node-persist')
 
+// TODO: make this display top three integer scores groups, rather than top three people
+
 module.exports = {
   name: 'leaderboard',
   aliases: ['board'],
@@ -14,8 +16,6 @@ module.exports = {
     await storage.init()
     var leaderboard = await storage.getItem('leaderboard')
 
-    console.log(leaderboard)
-
     if(leaderboard.length > 0) {
       leaderboard.sort((a, b) => (b.points - a.points))
       var num = Math.min(leaderboard.length, 3)
@@ -28,7 +28,7 @@ module.exports = {
         var plural = (points > 1) ? 'points' : 'point'
 
         fields.push({
-          "name" : `${medals[i]} - ${points} ${plural}`,
+          "name" : `${medals[i]} ${points} ${plural}`,
           "value" : `${name}\n`
         })
       }
