@@ -4,7 +4,7 @@ const addPoints = require('../util/addPoints')
 module.exports = {
   name: 'count',
   aliases: [],
-  ownersOnly: true,
+  ownersOnly: false,
   guildOnly: false,
   requireArgs: false,
   deleteCommand: false,
