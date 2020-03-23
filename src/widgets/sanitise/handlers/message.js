@@ -1,4 +1,5 @@
 const words = require('../words.json')
+const addPoints = require('../../command/util/addPoints')
 
 module.exports = async message => {
   if(message.channel.type != 'text') return
@@ -10,11 +11,7 @@ module.exports = async message => {
   bad = check.map(word => words.includes(word)).includes(true)
 
   if(bad === true) {
-    // strike 1 - send a warning message
-    // strike 2 - kick user
-    // strike 3 - ban user
-    // message.channel.send(`:disappointed_relieved: *that's a bad word*`)
-
+    addPoints(message, -1, message.author.id)
     message.client.channels.cache.find(ch => ch.name === 'system').send(`:warning: ${message.author} swore in ${message.channel} (${message.toString()})`)
   }
 }
