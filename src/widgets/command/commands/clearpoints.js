@@ -1,7 +1,7 @@
 const storage = require('node-persist')
 
 module.exports = {
-  name: 'clearpoints',
+  name: 'clearpoints2',
   aliases: [],
   ownersOnly: true,
   guildOnly: false,
@@ -14,7 +14,7 @@ module.exports = {
     await storage.setItem('leaderboard', [])
     await message.channel.send({
       "embed" : {
-        "description" : "Points cleared",
+        "description" : "Points cleared :exploding_head:",
         "color": 15105570,
       }
     })

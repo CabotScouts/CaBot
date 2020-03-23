@@ -18,8 +18,7 @@ module.exports = async (message, points, ids = []) => {
       var add = {}
 
       if(match.length > 0) {
-        var updated = match[0].points + points
-        match[0].points = updated
+        match[0].points = points
         add = match[0]
       }
       else {
@@ -27,20 +26,16 @@ module.exports = async (message, points, ids = []) => {
           id: user,
           points: points
         }
-        var updated = points
       }
 
-      if(Math.abs(updated) > 0) remainder.push(add) // if 0 points don't store
+      if(Math.abs(points) > 0) remainder.push(add) // if 0 points don't store
       leaderboard = remainder
     })
-
-    var plural = (Math.abs(points) > 1) ? 'points' : 'point'
-    var action = (points > 0) ? 'awarded :medal:' : 'removed :poo:'
 
     await storage.setItem('leaderboard', remainder)
     await message.channel.send({
       "embed" : {
-        "description" : `${Math.abs(points)} ${plural} ${action}`,
+        "description" : `Set points to ${points} :eyes:`,
         "color": 3447003,
       }
     })

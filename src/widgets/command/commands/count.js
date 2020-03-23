@@ -1,4 +1,5 @@
 const storage = require('node-persist')
+const addPoints = require('../util/addPoints')
 
 module.exports = {
   name: 'count',
@@ -10,19 +11,22 @@ module.exports = {
   cooldown: 0,
   disabled: false,
   messageExecute: async (message, args) => {
-    storage.init()
+    await storage.init()
     var count = await storage.getItem('counter') + 1
 
+    console.log(count)
+
     if(count == 100) {
-      // do cool things
+      addPoints(message, 50, message.author.id)
       var emoji = ':tada:'
-      count = 1
     }
     else {
       var emoji = ':money_with_wings:'
     }
 
     message.channel.send(`${emoji} ${count.toString()}`)
+
+    count = (count >= 100) ? 0 : count
     await storage.setItem('counter', count)
   }
 };

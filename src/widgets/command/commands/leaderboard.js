@@ -2,7 +2,7 @@ const storage = require('node-persist')
 
 module.exports = {
   name: 'leaderboard',
-  aliases: [],
+  aliases: ['board'],
   ownersOnly: false,
   guildOnly: false,
   requireArgs: false,
@@ -14,13 +14,15 @@ module.exports = {
     await storage.init()
     var leaderboard = await storage.getItem('leaderboard')
 
+    console.log(leaderboard)
+
     if(leaderboard.length > 0) {
       leaderboard.sort((a, b) => (b.points - a.points))
       var num = Math.min(leaderboard.length, 3)
       const medals = [':first_place:', ':second_place:', ':third_place:']
       var fields = []
       for(i = 0; i < num; i++) {
-        // var user = message.guild.members.cache.get(leaderboard[i].id)
+        var user = message.guild.members.cache.get(leaderboard[i].id)
         var points = leaderboard[i].points
         var name = `<@!${leaderboard[i].id}>`
         var plural = (points > 1) ? 'points' : 'point'
