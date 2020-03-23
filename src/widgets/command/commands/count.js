@@ -26,7 +26,7 @@ module.exports = {
     if(count == 100) {
       addPoints(message, 50, message.author.id)
     }
-    else if(Math.mod(count, 10) === 0) {
+    else if((count % 10) === 0) {
       addPoints(message, 5, message.author.id)
     }
 
