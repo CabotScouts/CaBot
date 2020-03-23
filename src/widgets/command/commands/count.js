@@ -14,7 +14,7 @@ module.exports = {
     await storage.init()
     var count = await storage.getItem('counter') + 1
 
-    var emoji = (count == 100) ? ':tada:' : ':money_with_wings'
+    var emoji = (count == 100) ? ':tada:' : ':money_with_wings:'
 
     message.channel.send({
       "embed" : {
