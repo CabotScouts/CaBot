@@ -25,15 +25,11 @@ module.exports = {
       }
     })
 
-    console.log(count)
-
     if(count == 100) {
-      addPoints(message, 50, message.author.id)
-      console.log('awarding for 100')
+      addPoints(message, 20, message.author.id)
     }
     else if((count % 10) === 0) {
       addPoints(message, 5, message.author.id)
-      console.log('awarding for 10')
     }
 
     count = (count >= 100) ? 0 : count
