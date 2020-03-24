@@ -11,6 +11,8 @@ module.exports = {
   cooldown: 30,
   disabled: false,
   messageExecute: async (message, args) => {
+    if(message.channel.id != '692068931032055840') return
+
     await storage.init()
     var count = await storage.getItem('counter') + 1
 
