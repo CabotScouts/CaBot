@@ -8,7 +8,7 @@ module.exports = {
   guildOnly: false,
   requireArgs: false,
   deleteCommand: false,
-  cooldown: 30,
+  cooldown: 10,
   disabled: false,
   messageExecute: async (message, args) => {
     if(message.channel.id != '692068931032055840') return
