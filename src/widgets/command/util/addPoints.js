@@ -1,8 +1,6 @@
 const storage = require('node-persist')
 
 module.exports = async (message, points, ids = []) => {
-  if(!(message.member.roles.cache.find(r => r.name === 'leader') || message.member.roles.cache.find(r => r.name === 'bot'))) return
-
   await storage.init()
   var leaderboard = await storage.getItem('leaderboard') || []
   var users = [ ...message.mentions.users.keys() ].concat(ids)
