@@ -35,6 +35,7 @@
     "axios": "^0.19.2",
     "discord.js": "github:discordjs/discord.js#master",
     "google-spreadsheet": "^3.0.10",
-    "node-persist": "^3.0.5"
+    "node-persist": "^3.0.5",
+    "wikijs": "^6.0.1"
   }
 }
