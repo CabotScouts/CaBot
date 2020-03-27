@@ -11,7 +11,7 @@ module.exports = async message => {
   bad = check.map(word => words.includes(word)).includes(true)
 
   if(bad === true) {
-    addPoints(message, -10, message.author.id)
+    // addPoints(message, -10, message.author.id)
     message.client.channels.cache.find(ch => ch.name === 'system').send(`:warning: ${message.author} swore in ${message.channel} (${message.toString()})`)
   }
 }
