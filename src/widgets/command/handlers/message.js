@@ -69,11 +69,11 @@ module.exports = async message => {
     .map(createExecutable);
   if (!payload.length) return;
 
-  console.log(
-    isText(message.channel)
-      ? `${message.guild.name}#${message.channel.name}|${message.author.tag}: ${message.content}`
-      : `${message.author.tag}: ${message.content}`
-  );
+  // console.log(
+  //   isText(message.channel)
+  //     ? `${message.guild.name}#${message.channel.name}|${message.author.tag}: ${message.content}`
+  //     : `${message.author.tag}: ${message.content}`
+  // );
 
   await serializer(payload.map(i => i.executable));
   deleteCommand(message, payload);
