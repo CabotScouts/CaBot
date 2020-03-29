@@ -8,7 +8,7 @@ module.exports = {
   guildOnly: false,
   requireArgs: false,
   deleteCommand: false,
-  cooldown: 60,
+  cooldown: 30,
   disabled: false,
   messageExecute: async (message, args) => {
     if(message.channel.id != '692068931032055840') return
@@ -26,10 +26,10 @@ module.exports = {
     })
 
     if(count == 100) {
-      addPoints(message, 25, message.author.id)
+      addPoints(message, 10, message.author.id)
     }
     else if((count % 10) === 0) {
-      addPoints(message, 10, message.author.id)
+      addPoints(message, 1, message.author.id)
     }
 
     count = (count >= 100) ? 0 : count
