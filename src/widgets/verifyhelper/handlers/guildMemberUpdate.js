@@ -13,6 +13,6 @@ module.exports = async (oldMember, newMember) => {
   }
 
   if(networkAdded) {
-    newMember.guild.channels.cache.find(ch => ch.name === 'network').send(`:fleur_de_lis: Welcome to the network chat ${newMember}`)
+    newMember.guild.channels.cache.find(ch => ch.name === 'gromit').send(`:fleur_de_lis: Welcome to the network chat ${newMember}`)
   }
 };
