@@ -5,14 +5,19 @@ module.exports = async (oldMember, newMember) => {
 
   if(explorerAdded) {
     newMember.guild.channels.cache.find(ch => ch.name === 'chat').send(`:fleur_de_lis: Welcome to Cabot Explorers on Discord ${newMember} - say hello!`)
+
     newMember.guild.channels.cache.find(ch => ch.name === 'system').send(`:star: ${newMember} was verified`)
   }
 
   if(leaderAdded) {
     newMember.guild.channels.cache.find(ch => ch.name === 'leaders').send(`:fleur_de_lis: Welcome to the leaders lounge ${newMember}`)
+
+    newMember.guild.channels.cache.find(ch => ch.name === 'system').send(`:star: ${newMember} was verified`)
   }
 
   if(networkAdded) {
     newMember.guild.channels.cache.find(ch => ch.name === 'gromit').send(`:fleur_de_lis: Welcome to the network chat ${newMember}`)
+
+    newMember.guild.channels.cache.find(ch => ch.name === 'system').send(`:star: ${newMember} was verified`)
   }
 };
