@@ -26,10 +26,10 @@ module.exports = {
     })
 
     if(count == 100) {
-      addPoints(message, 10, message.author.id)
+      addPoints(message, 20, message.author.id)
     }
     else if((count % 10) === 0) {
-      addPoints(message, 1, message.author.id)
+      addPoints(message, 5, message.author.id)
     }
 
     count = (count >= 100) ? 0 : count
