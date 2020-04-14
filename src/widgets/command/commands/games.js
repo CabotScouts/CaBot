@@ -12,7 +12,7 @@ module.exports = {
     // role = message.guild.roles.cache.find(r => r.id == gameID)
 
     if(message.member.roles.cache.has(gameID)) {
-      message.member.removeRole(gameID).then(
+      message.member.roles.remove(gameID).then(
         message.channel.send({
           "embed" : {
             "description" : "You won't receive game notifications anymore",
@@ -22,7 +22,7 @@ module.exports = {
       )
     }
     else {
-      message.member.addRole(gameID).then(
+      message.member.roles.add(gameID).then(
         message.channel.send({
           "embed" : {
             "description" : "You'll now receive game notifications",
