@@ -9,10 +9,10 @@ module.exports = {
   disabled: false,
   messageExecute: async (message, args) => {
     gameID = "699660460546588812"
-    role = message.guild.roles.cache.find(r => r.id == gameID)
+    // role = message.guild.roles.cache.find(r => r.id == gameID)
 
     if(message.member.roles.cache.has(gameID)) {
-      message.member.removeRole(role).then(
+      message.member.removeRole(gameID).then(
         message.channel.send({
           "embed" : {
             "description" : "You won't receive game notifications anymore",
@@ -22,7 +22,7 @@ module.exports = {
       )
     }
     else {
-      message.member.addRole(role).then(
+      message.member.addRole(gameID).then(
         message.channel.send({
           "embed" : {
             "description" : "You'll now receive game notifications",
