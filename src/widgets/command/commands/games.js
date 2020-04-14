@@ -2,7 +2,7 @@ module.exports = {
   name: 'gamer',
   aliases: [],
   ownersOnly: false,
-  guildOnly: false,
+  guildOnly: true,
   requireArgs: false,
   deleteCommand: false,
   cooldown: 10,
