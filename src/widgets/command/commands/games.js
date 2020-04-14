@@ -9,7 +9,7 @@ module.exports = {
   disabled: false,
   messageExecute: async (message, args) => {
     gameID = 699660460546588812
-    role = message.guild.roles.find(r => r.id === gameID)
+    role = message.guild.roles.cache.find(r => r.id === gameID)
 
     if(message.author.roles.has(gameRole)) {
       message.author.removeRole(role).then(
