@@ -11,7 +11,7 @@ module.exports = {
     gameID = 699660460546588812
     role = message.guild.roles.cache.find(r => r.id === gameID)
 
-    if(message.author.roles.has(gameRole)) {
+    if(message.author.roles.cache.has(gameRole)) {
       message.author.removeRole(role).then(
         message.channel.send({
           "embed" : {
