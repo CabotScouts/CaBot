@@ -18,7 +18,7 @@ module.exports = {
     if(leaderboard.length > 0) {
       leaderboard.sort((a, b) => (b.points - a.points))
       // var num = Math.min(leaderboard.length, 3)
-      var num = (args[1] == "all") ? leaderboard.length : Math.min(leaderboard.length, 3)
+      var num = (args[0] == "all") ? leaderboard.length : Math.min(leaderboard.length, 3)
       const medals = [':first_place:', ':second_place:', ':third_place:']
       var fields = []
       for(i = 0; i < num; i++) {
