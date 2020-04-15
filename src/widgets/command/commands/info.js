@@ -12,7 +12,7 @@ module.exports = {
   messageExecute: async (message, args) => {
     message.channel.send({
       "embed": {
-        "title": "Hello, I'm CaBot :scout:",
+        "title": "Hello, I'm CaBot <:scout:693531748696326245>",
         "description" : "Here are some things I can do:",
         "color": 16580705,
 
