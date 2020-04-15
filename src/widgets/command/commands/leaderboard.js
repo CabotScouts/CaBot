@@ -21,7 +21,7 @@ module.exports = {
       var num = (args[1] == "all") ? leaderboard.length : Math.min(leaderboard.length, 3)
       const medals = [':first_place:', ':second_place:', ':third_place:']
       var fields = []
-      for(i = 0; i < leaderboard.length; i++) {
+      for(i = 0; i < num; i++) {
         var user = message.guild.members.cache.get(leaderboard[i].id)
         var points = leaderboard[i].points
         var name = `<@!${leaderboard[i].id}>`
