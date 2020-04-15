@@ -25,7 +25,7 @@ module.exports = {
         var points = leaderboard[i].points
         var name = `<@!${leaderboard[i].id}>`
         var plural = (points > 1) ? 'points' : 'point'
-        var medal = (i <= 3) ? medals[i] : ':tomato:'
+        var medal = (i < 3) ? medals[i] : ':tomato:'
 
         fields.push({
           "name" : `${medal} ${points} ${plural}`,
