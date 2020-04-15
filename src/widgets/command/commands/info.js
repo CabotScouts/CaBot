@@ -34,8 +34,12 @@ module.exports = {
             "value": "does something weird with numbers"
           },
           {
-            "name": "!leaderboard",
-            "value": "where do you rank"
+            "name": "!leaderboard [all]",
+            "value": "where do you rank?"
+          },
+          {
+            "name": "!gamer",
+            "value": "turns on notifications for new games"
           }
         ]
       }
