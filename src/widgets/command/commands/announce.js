@@ -8,7 +8,7 @@ module.exports = {
   requireArgs: true,
   deleteCommand: false,
   cooldown: 0,
-  disabled: false,
+  disabled: true,
   messageExecute: async (message, args) => {
     if(!message.member.roles.cache.find(r => r.name === 'leader')) return
 
