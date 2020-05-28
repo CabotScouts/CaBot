@@ -48,7 +48,11 @@ module.exports = {
           {
             "name": "!lgbt",
             "value": "add yourself to the lgbt role"
-          }
+          },
+          {
+            "name": "!politics",
+            "value": "add yourself to the politics role"
+          },
         ]
       }
     })
