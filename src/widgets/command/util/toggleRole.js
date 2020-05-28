@@ -5,7 +5,7 @@ module.exports = async (message, roleID = []) => {
     message.member.roles.remove(role.id).then(
       message.channel.send({
         "embed" : {
-          "description" : `Removed from ${role.mention}` ,
+          "description" : `Removed from ${role.name}` ,
           "color" : 15105570
         }
       })
@@ -15,7 +15,7 @@ module.exports = async (message, roleID = []) => {
     message.member.roles.add(roleID).then(
       message.channel.send({
         "embed" : {
-          "description" : `Added to ${role.mention}`,
+          "description" : `Added to ${role.name}`,
           "color" : 15105570
         }
       })
