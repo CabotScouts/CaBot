@@ -39,7 +39,15 @@ module.exports = {
           },
           {
             "name": "!gamer",
-            "value": "turns on notifications for new games"
+            "value": "add yourself to the game role"
+          },
+          {
+            "name": "!programmer",
+            "value": "add yourself to the programming role"
+          },
+          {
+            "name": "!lgbt",
+            "value": "add yourself to the lgbt role"
           }
         ]
       }
