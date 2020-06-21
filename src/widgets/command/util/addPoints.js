@@ -32,15 +32,17 @@ module.exports = async (message, points, ids = []) => {
       leaderboard = remainder
     })
 
-    var plural = (Math.abs(points) > 1) ? 'points' : 'point'
-    var action = (points > 0) ? 'awarded :medal:' : 'removed :poo:'
+    if(points > 0) {
+      var plural = (Math.abs(points) > 1) ? 'points' : 'point'
+      var action = (points > 0) ? 'awarded :medal:' : 'removed :poo:'
 
-    await storage.setItem('leaderboard', remainder)
-    await message.channel.send({
-      "embed" : {
-        "description" : `${Math.abs(points)} ${plural} ${action}`,
-        "color": 3447003,
-      }
-    })
+      await storage.setItem('leaderboard', remainder)
+      await message.channel.send({
+        "embed" : {
+          "description" : `${Math.abs(points)} ${plural} ${action}`,
+          "color": 3447003,
+        }
+      })
+    }
   }
 }

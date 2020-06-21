@@ -27,10 +27,12 @@ module.exports = {
         var plural = (points > 1) ? 'points' : 'point'
         var name = `<@!${leaderboard[i].id}>`
 
-        fields.push({
-          "name" : `${medal}${points} ${plural}`,
-          "value" : `${name}\n\n`
-        })
+        if(points > 0) {
+          fields.push({
+            "name" : `${medal}${points} ${plural}`,
+            "value" : `${name}\n\n`
+          })
+        }
       }
 
       message.channel.send({
