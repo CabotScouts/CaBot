@@ -18,7 +18,7 @@ module.exports = {
 
         "fields": [
           {
-            "name": "!info",
+            "name": "!help",
             "value": "shows this help message"
           },
           {
@@ -31,7 +31,7 @@ module.exports = {
           },
           {
             "name": "!count",
-            "value": "does something weird with numbers"
+            "value": "does something weird with numbers (but only in #count)"
           },
           {
             "name": "!leaderboard [all]",
