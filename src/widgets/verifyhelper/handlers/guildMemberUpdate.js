@@ -4,20 +4,20 @@ module.exports = async (oldMember, newMember) => {
   networkAdded = !oldMember.roles.cache.has('694565693181526036') && newMember.roles.cache.has('694565693181526036')
 
   if(explorerAdded) {
-    newMember.guild.channels.cache.find(ch => ch.name === 'chat').send(`:fleur_de_lis: Welcome to Cabot Explorers on Discord ${newMember} - say hello!`)
+    newMember.guild.channels.cache.find(ch => ch.id == '689271687078084707').send(`<:scout:693531748696326245> Welcome to Cabot Explorers on Discord ${newMember} - say hello!`)
 
-    newMember.guild.channels.cache.find(ch => ch.name === 'system').send(`:star: ${newMember} was verified`)
+    newMember.guild.channels.cache.find(ch => ch.id == '689298055517962330').send(`:star: ${newMember} was verified`)
   }
 
   if(leaderAdded) {
-    newMember.guild.channels.cache.find(ch => ch.name === 'leaders').send(`:fleur_de_lis: Welcome to the leaders lounge ${newMember}`)
+    newMember.guild.channels.cache.find(ch => ch.id == '689552904511553591').send(`<:scout:693531748696326245> Welcome to the leaders lounge ${newMember}`)
 
-    newMember.guild.channels.cache.find(ch => ch.name === 'system').send(`:star: ${newMember} was verified`)
+    newMember.guild.channels.cache.find(ch => ch.id == '689298055517962330').send(`:star: ${newMember} was verified`)
   }
 
   if(networkAdded) {
-    newMember.guild.channels.cache.find(ch => ch.name === 'gromit').send(`:fleur_de_lis: Welcome to the network chat ${newMember}`)
+    newMember.guild.channels.cache.find(ch => ch.name === 'gromit').send(`<:scout:693531748696326245> Welcome to the network chat ${newMember}`)
 
-    newMember.guild.channels.cache.find(ch => ch.name === 'system').send(`:star: ${newMember} was verified`)
+    newMember.guild.channels.cache.find(ch => ch.id == '689298055517962330').send(`:star: ${newMember} was verified`)
   }
 };
