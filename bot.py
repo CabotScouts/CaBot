@@ -17,8 +17,9 @@ class CaBot(commands.Bot) :
         self.prefix = options["command_prefix"]
         self.version = __version__
 
-        if "DB" in options :
-            self.db = SqliteDatabase(options["DB"])
+        if "db" in options :
+            self.db = SqliteDatabase(options["db"])
+            self.db.connect()
 
         super().__init__(**options)
 
@@ -33,4 +34,5 @@ if __name__ == "__main__" :
     bot.load_extension("cogs.sanitise")
     bot.load_extension("cogs.points")
     bot.load_extension("cogs.social_media")
+    bot.load_extension("cogs.count")
     bot.run(os.getenv("TOKEN"))
