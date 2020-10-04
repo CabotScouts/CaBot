@@ -31,7 +31,7 @@ if __name__ == "__main__" :
     bot.load_extension("cogs.logger")
     bot.load_extension("cogs.roles")
     bot.load_extension("cogs.verify_helper")
-    bot.load_extension("cogs.sanitise")
+    # bot.load_extension("cogs.sanitise")
     bot.load_extension("cogs.points")
     bot.load_extension("cogs.social_media")
     bot.load_extension("cogs.count")
