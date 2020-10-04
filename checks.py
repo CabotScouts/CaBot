@@ -1,26 +1,26 @@
 roles = {
-    "explorer" : 0,
-    "network" : 0,
-    "leader" : 0,
-    "admin" : 0,
-    "bot" : 0,
+    "explorer" : 689256639265636382,
+    "network" : 694565693181526036,
+    "leader" : 689256880836444182,
+    "admin" : 689257161733308419,
+    "bot" : 689506347409997955,
 }
 
-def needsRole(ctx, role) :
+def isRole(ctx, role) :
     role = ctx.guild.get_role(roles[role])
     return (role in ctx.author.roles)
 
-def needsExplorer(ctx) :
-    return needsRole(ctx, "explorer")
+def isExplorer(ctx) :
+    return isRole(ctx, "explorer")
 
-def needsNetwork(ctx) :
-    return needsRole(ctx, "network")
+def isNetwork(ctx) :
+    return isRole(ctx, "network")
 
-def needsLeader(ctx) :
-    return needsRole(ctx, "leader")
+def isLeader(ctx) :
+    return isRole(ctx, "leader")
 
-def needsAdmin(ctx) :
-    return needsRole(ctx, "admin")
+def isAdmin(ctx) :
+    return isRole(ctx, "admin")
 
-def needsBot(ctx) :
-    return needsRole(ctx, "bot")
+def isBot(ctx) :
+    return isRole(ctx, "bot")
