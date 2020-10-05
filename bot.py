@@ -25,7 +25,7 @@ class CaBot(commands.Bot) :
 
 
 if __name__ == "__main__" :
-    bot = CaBot(db=os.getenv("DB"), command_prefix=os.getenv("PREFIX"))
+    bot = CaBot(db=os.getenv("DB"), command_prefix=os.getenv("PREFIX"), intents=discord.Intents.all())
     bot.load_extension("cogs.base")
     bot.load_extension("cogs.dev")
     bot.load_extension("cogs.logger")
