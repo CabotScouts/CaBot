@@ -59,7 +59,7 @@ class VerifyHelper(commands.Cog, name = "Discord Verification Helper") :
 
             await after.guild.get_channel(self.channels["system"]).send(f":star: {after.mention} was verified as a leader")
 
-    # @commands.Cog.listener()
-    # async def on_member_remove(self, member) :
-    #     # remove from DB
-    #     pass
+    @commands.Cog.listener()
+    async def on_message(self, message) :
+        if message.channel.id == 689264900044095558 and message.content == "<#689264900044095558>" :
+            await message.channel.send(f"Nice one {message.author.mention}, that's how you send a message - please now send a message with your **name** and **Explorer Unit** so we can verify you!")
