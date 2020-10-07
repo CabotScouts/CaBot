@@ -42,7 +42,7 @@ class Points(commands.Cog) :
     @commands.check(isLeader)
     async def point(self, ctx, *args) :
         members = ctx.message.mentions
-        points = abs(pointsFromArgs(args, members)) or 1
+        points = pointsFromArgs(args, members) or 1
         plural = "points" if (points == 0 or points > 1) else "point"
         IDs = [ member.id for member in members ]
         mentions = ', '.join([ member.mention for member in members ])
@@ -55,7 +55,7 @@ class Points(commands.Cog) :
     @commands.check(isLeader)
     async def depoint(self, ctx, *args) :
         members = ctx.message.mentions
-        points = abs(pointsFromArgs(args, members)) or 1
+        points = pointsFromArgs(args, members) or 1
         plural = "points" if (points == 0 or points > 1) else "point"
         IDs = [ member.id for member in members ]
         mentions = ', '.join([ member.mention for member in members ])
