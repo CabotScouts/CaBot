@@ -1,6 +1,5 @@
-node_modules/
-.node-persist/
-credentials.json
-google-service-account.json
-token.json
+.DS_Store
 *.sqlite
+.env
+virtualenv
+__pycache__
