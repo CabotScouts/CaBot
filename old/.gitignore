@@ -1,5 +1,0 @@
-node_modules/
-.node-persist/
-credentials.json
-google-service-account.json
-token.json
