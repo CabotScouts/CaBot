@@ -1,4 +1,5 @@
 import os
+import datetime
 
 from dotenv import load_dotenv
 from peewee import *
@@ -20,6 +21,7 @@ class KeyValue(Base) :
 
 class Member(Base) :
     discordID = IntegerField(unique = True)
+    name = TextField(null = True)
     points = IntegerField(default = 0)
 
 class Channel(Base) :
@@ -27,6 +29,7 @@ class Channel(Base) :
     name = TextField()
 
 class Message(Base) :
+    timestamp = TimestampField(default = datetime.datetime.now().timestamp())
     member = ForeignKeyField(Member, backref="member")
     channel = ForeignKeyField(Channel, backref="channel")
     message = TextField(null = True)
