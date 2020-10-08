@@ -36,7 +36,7 @@ class VerifyHelper(commands.Cog, name = "Discord Verification Helper") :
             or hasRole(member, self.roles["leader"])
             ) :
 
-            await asyncio.sleep(2)
+            await asyncio.sleep(5)
 
             await member.guild.get_channel(self.channels["verify"]).send(f"<:scout:693531748696326245> Welcome to Cabot Explorers on Discord {member.mention} - before you can access the server we need to check that you're an Explorer - please reply here with your **name** and **Explorer Unit**, and wait for a leader to verify you")
 
