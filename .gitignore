@@ -1,5 +1,6 @@
 .DS_Store
 *.sqlite
 .env
+credentials
 virtualenv
 __pycache__
