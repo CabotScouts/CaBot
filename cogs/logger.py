@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 
 from models import Message, Member, Channel
-from checks import isAdmin
+from helpers import isAdmin
 
 def setup(bot) :
     bot.add_cog(Logger(bot))

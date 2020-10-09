@@ -1,24 +1,18 @@
 import discord
 from discord.ext import commands
 
+from server import roles
+
 def setup(bot) :
     bot.add_cog(Roles(bot))
 
 class Roles(commands.Cog) :
 
-    # should we cache the Role object on init?
-    roles = {
-        "gamer" : 699660460546588812,
-        "lgbt" : 715693259497930804,
-        "politics" : 715697602087354389,
-        "programmer" : 702163719269908603,
-    }
-
     def __init__(self, bot) :
         self.bot = bot
 
     async def toggleRole(self, ctx, role) :
-        role = ctx.guild.get_role(self.roles[role])
+        role = ctx.guild.get_role(roles[role])
 
         if role :
             if role in ctx.author.roles :

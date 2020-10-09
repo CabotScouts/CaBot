@@ -3,7 +3,7 @@ import os
 import discord
 from discord.ext import commands
 
-from checks import isAdmin
+from helpers import isAdmin
 
 def setup(bot) :
     bot.add_cog(DevCommands(bot))

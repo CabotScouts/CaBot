@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-from checks import isLeader, isAdmin
+from helpers import isLeader, isAdmin
 from models import Member
 
 def setup(bot) :

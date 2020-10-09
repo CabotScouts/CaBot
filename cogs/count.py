@@ -1,14 +1,14 @@
 import discord
 from discord.ext import commands
 
-from checks import isAdmin
+from helpers import isAdmin, channels
 from models import KeyValue
 
 def setup(bot) :
     bot.add_cog(Count(bot))
 
 def onlyInCount(ctx) :
-    return ctx.channel.id == 692068931032055840
+    return ctx.channel.id == channels["count"]
 
 class Count(commands.Cog, name = "Some weird counting game") :
 

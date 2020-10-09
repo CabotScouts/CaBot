@@ -3,7 +3,7 @@ import re
 import discord
 from discord.ext import commands
 
-from checks import isLeader
+from helpers import isLeader
 
 def setup(bot) :
     bot.add_cog(BaseCommands(bot))
