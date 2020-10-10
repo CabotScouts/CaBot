@@ -35,7 +35,7 @@ class VerifyHelper(commands.Cog, name = "Discord Verification Helper") :
                     unit = member.guild.get_role(roles[verifier.unit])
                     await member.add_roles(unit)
 
-                verifier.remove()
+                verifier.delete()
 
             else :
 
@@ -97,11 +97,17 @@ class VerifyHelper(commands.Cog, name = "Discord Verification Helper") :
         if role in ["explorer", "leader", "network"] :
             unit = unit if unit in units else None
 
-            verifier, update = Verifier.get_or_create(discordID = id)
-            verifier.name = name
-            verifier.role = role
-            verifier.unit = unit
-            verifier.save()
+            verifier, created = Verifier.get_or_create(discordID = id, defaults = {
+                "name": name,
+                "role": role,
+                "unit": unit
+            })
+
+            if not created :
+                verifier.name = name
+                verifier.role = role
+                verifier.unit = unit
+                verifier.save()
 
             unitStr = f", {unit}" if unit else ""
             await ctx.send(f"<@{id}> will be verified when they next join the server ({name}, {role}{unitStr})")
