@@ -1,8 +1,9 @@
 import discord
 from discord.ext import commands
 
-from helpers import isAdmin, channels
+from helpers import isAdmin
 from models import KeyValue
+from server import channels
 
 def setup(bot) :
     bot.add_cog(Count(bot))
