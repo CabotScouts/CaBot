@@ -6,6 +6,6 @@ The bot provides various functions to assist with the running of the server, suc
 The original bot was thrown together in JavaScript ([final commit of that version](https://github.com/CabotExplorers/CaBot/tree/50fa4122471f9e367502949de6c48c560bf28656)), before being rebuilt in Python for longevity.
 
 ## History
-* v1.0 - original JavaScript version [commit](https://github.com/CabotExplorers/CaBot/tree/50fa4122471f9e367502949de6c48c560bf28656)
+* v1.0 - original JavaScript version ([commit](https://github.com/CabotExplorers/CaBot/tree/50fa4122471f9e367502949de6c48c560bf28656))
 * v2.0 - September 2020 rewrite
 * v2.1 - Offline member verification added
