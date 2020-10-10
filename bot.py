@@ -7,7 +7,7 @@ from peewee import SqliteDatabase
 
 load_dotenv()
 
-__version__ = "2.1.0"
+__version__ = "2.2.0"
 
 class CaBot(commands.Bot) :
 
@@ -33,9 +33,8 @@ if __name__ == "__main__" :
     bot.load_extension("cogs.logger")
     bot.load_extension("cogs.roles")
     bot.load_extension("cogs.verify_helper")
-    # bot.load_extension("cogs.sanitise")
+    bot.load_extension("cogs.sanitise")
     bot.load_extension("cogs.points")
-    bot.load_extension("cogs.social_media")
     bot.load_extension("cogs.count")
 
     bot.run(os.getenv("TOKEN"))

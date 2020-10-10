@@ -9,3 +9,4 @@ The original bot was thrown together in JavaScript ([final commit of that versio
 * v1.0 - Original JavaScript version ([commit](https://github.com/CabotExplorers/CaBot/tree/50fa4122471f9e367502949de6c48c560bf28656))
 * v2.0 - September 2020 rewrite
 * v2.1 - Offline member verification added
+* v2.2 - Re-added message sanitisation using updated `profanity-check` module
