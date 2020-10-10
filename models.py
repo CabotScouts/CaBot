@@ -34,3 +34,9 @@ class Message(Base) :
     channel = ForeignKeyField(Channel, backref="channel")
     message = TextField(null = True)
     embed = TextField(null = True)
+
+class Verifier(Base) :
+    discordID = IntegerField(unique = True)
+    name = TextField()
+    role = TextField()
+    unit = TextField(null = True)
