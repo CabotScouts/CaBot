@@ -3,48 +3,53 @@ from discord.ext import commands
 
 from server import roles
 
-def setup(bot) :
+
+def setup(bot):
     bot.add_cog(Roles(bot))
 
-class Roles(commands.Cog) :
 
-    def __init__(self, bot) :
+class Roles(commands.Cog):
+    def __init__(self, bot):
         self.bot = bot
 
-    async def toggleRole(self, ctx, role) :
+    async def toggleRole(self, ctx, role):
         role = ctx.guild.get_role(roles[role])
 
-        if role :
-            if role in ctx.author.roles :
+        if role:
+            if role in ctx.author.roles:
                 await ctx.author.remove_roles(role)
-                await ctx.send(embed=discord.Embed(
-                    description = f"Removed from <@&{role.id}>",
-                    color = 1146986,
-                ))
+                await ctx.send(
+                    embed=discord.Embed(
+                        description=f"Removed from <@&{role.id}>",
+                        color=1146986,
+                    )
+                )
 
-            else :
+            else:
                 await ctx.author.add_roles(role)
-                await ctx.send(embed=discord.Embed(
-                    description = f"Added to <@&{role.id}>",
-                    color = 1146986,
-                ))
+                await ctx.send(
+                    embed=discord.Embed(
+                        description=f"Added to <@&{role.id}>",
+                        color=1146986,
+                    )
+                )
 
     @commands.command()
     @commands.guild_only()
-    async def gamer(self, ctx) :
+    async def gamer(self, ctx):
         await self.toggleRole(ctx, "gamer")
 
     @commands.command()
     @commands.guild_only()
-    async def lgbt(self, ctx) :
+    async def lgbt(self, ctx):
         await self.toggleRole(ctx, "lgbt")
 
     @commands.command()
     @commands.guild_only()
-    async def politics(self, ctx) :
+    async def politics(self, ctx):
         await self.toggleRole(ctx, "politics")
 
     @commands.command()
     @commands.guild_only()
-    async def programmer(self, ctx) :
+    async def programmer(self, ctx):
         await self.toggleRole(ctx, "programmer")

@@ -9,9 +9,9 @@ load_dotenv()
 
 __version__ = "2.2.0"
 
-class CaBot(commands.Bot) :
 
-    def __init__(self, **options) :
+class CaBot(commands.Bot):
+    def __init__(self, **options):
         self.prefix = options["command_prefix"]
         self.version = __version__
 
@@ -21,11 +21,11 @@ class CaBot(commands.Bot) :
         super().__init__(**options)
 
 
-if __name__ == "__main__" :
+if __name__ == "__main__":
     bot = CaBot(
         db=os.getenv("DB", ":memory:"),
         command_prefix=os.getenv("PREFIX", "?"),
-        intents=discord.Intents.all()
+        intents=discord.Intents.all(),
     )
 
     bot.load_extension("cogs.base")

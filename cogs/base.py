@@ -5,32 +5,32 @@ from discord.ext import commands
 
 from helpers import isLeader
 
-def setup(bot) :
+
+def setup(bot):
     bot.add_cog(BaseCommands(bot))
 
 
-class BaseCommands(commands.Cog) :
-
-    def __init__(self, bot) :
+class BaseCommands(commands.Cog):
+    def __init__(self, bot):
         self.bot = bot
         self.bot.remove_command("help")
 
     @commands.command()
-    async def help(self, ctx) :
+    async def help(self, ctx):
         help = discord.Embed(
-            color = 16580705,
-            title = "Hello, I'm CaBot <:scout:693531748696326245>",
-            description = "Here are some things I can do:",
+            color=16580705,
+            title="Hello, I'm CaBot <:scout:693531748696326245>",
+            description="Here are some things I can do:",
         )
         help.add_field(
-            name = f"{ctx.prefix}help",
-            value = "shows this help message",
-            inline = False,
+            name=f"{ctx.prefix}help",
+            value="shows this help message",
+            inline=False,
         )
         help.add_field(
-            name = f"{ctx.prefix}topic <topic>",
-            value = "adds a new discussion topic",
-            inline = False,
+            name=f"{ctx.prefix}topic <topic>",
+            value="adds a new discussion topic",
+            inline=False,
         )
         # help.add_field(
         #     name = f"{ctx.prefix}joke",
@@ -38,34 +38,34 @@ class BaseCommands(commands.Cog) :
         #     inline = False,
         # )
         help.add_field(
-            name = f"{ctx.prefix}count",
-            value = "does something strange with numbers (but only in #count)",
-            inline = False,
+            name=f"{ctx.prefix}count",
+            value="does something strange with numbers (but only in #count)",
+            inline=False,
         )
         help.add_field(
-            name = f"{ctx.prefix}leaderboard [all]",
-            value = "where do you rank?",
-            inline = False,
+            name=f"{ctx.prefix}leaderboard [all]",
+            value="where do you rank?",
+            inline=False,
         )
         help.add_field(
-            name = f"{ctx.prefix}gamer",
-            value = "add yourself to the gamer role",
-            inline = False,
+            name=f"{ctx.prefix}gamer",
+            value="add yourself to the gamer role",
+            inline=False,
         )
         help.add_field(
-            name = f"{ctx.prefix}programmer",
-            value = "add yourself to the programmer role",
-            inline = False,
+            name=f"{ctx.prefix}programmer",
+            value="add yourself to the programmer role",
+            inline=False,
         )
         help.add_field(
-            name = f"{ctx.prefix}politics",
-            value = "add yourself to the politics role",
-            inline = False,
+            name=f"{ctx.prefix}politics",
+            value="add yourself to the politics role",
+            inline=False,
         )
         help.add_field(
-            name = f"{ctx.prefix}lgbt",
-            value = "add yourself to the lgbt role",
-            inline = False,
+            name=f"{ctx.prefix}lgbt",
+            value="add yourself to the lgbt role",
+            inline=False,
         )
 
         await ctx.send(embed=help)
@@ -73,14 +73,14 @@ class BaseCommands(commands.Cog) :
     @commands.command()
     @commands.guild_only()
     @commands.check(isLeader)
-    async def announce(self, ctx, *message) :
+    async def announce(self, ctx, *message):
         """send an announcement message in the main chat channel"""
         channel = ctx.guild.get_channel(689271687078084707)
 
         embed = discord.Embed(
-            title = ":loudspeaker:",
-            description = ' '.join(message),
-            color = 16580705,
+            title=":loudspeaker:",
+            description=" ".join(message),
+            color=16580705,
         )
 
         await channel.send(embed=embed)
@@ -88,22 +88,22 @@ class BaseCommands(commands.Cog) :
     @commands.command()
     @commands.guild_only()
     @commands.check(isLeader)
-    async def message(self, ctx, *args) :
+    async def message(self, ctx, *args):
         channels = ctx.message.channel_mentions
 
-        if len(channels) > 0 :
-            messageLength = (len(args) - len(channels))
-            message = ' '.join(args[len(channels):])
+        if len(channels) > 0:
+            messageLength = len(args) - len(channels)
+            message = " ".join(args[len(channels) :])
 
-            for channel in channels :
+            for channel in channels:
                 await channel.send(message)
 
     @commands.command()
     @commands.guild_only()
-    async def topic(self, ctx, *topic) :
+    async def topic(self, ctx, *topic):
         category = ctx.guild.get_channel(689309599928418392)
-        topic = '-'.join([ re.sub(r'[^\w]', '', word) for word in topic ]).lower()
-        await ctx.guild.create_text_channel(topic, category = category)
+        topic = "-".join([re.sub(r"[^\w]", "", word) for word in topic]).lower()
+        await ctx.guild.create_text_channel(topic, category=category)
 
     # @commands.command()
     # @commands.guild_only()

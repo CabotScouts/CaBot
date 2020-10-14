@@ -1,29 +1,37 @@
 from server import roles
 
-def hasRole(member, roleID) :
+
+def hasRole(member, roleID):
     role = member.guild.get_role(roleID)
     return role in member.roles
 
-def gainedRole(before, after, roleID) :
+
+def gainedRole(before, after, roleID):
     role = before.guild.get_role(roleID)
     return (role not in before.roles) and (role in after.roles)
 
-def isExplorer(ctx) :
+
+def isExplorer(ctx):
     return hasRole(ctx.author, roles["explorer"])
 
-def isNetwork(ctx) :
+
+def isNetwork(ctx):
     return hasRole(ctx.author, roles["network"])
 
-def isLeader(ctx) :
+
+def isLeader(ctx):
     return hasRole(ctx.author, roles["leader"])
 
-def isAdmin(ctx) :
+
+def isAdmin(ctx):
     return hasRole(ctx.author, roles["admin"])
 
-def isBot(ctx) :
+
+def isBot(ctx):
     return hasRole(ctx.author, roles["bot"])
 
-class Colours :
+
+class Colours:
     DEFAULT = 0
     AQUA = 1752220
     GREEN = 3066993
