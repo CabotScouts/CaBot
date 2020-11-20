@@ -1,3 +1,5 @@
+import asyncio
+
 import discord
 from discord.ext import commands
 
@@ -11,7 +13,10 @@ def setup(bot):
 
 
 def onlyInCount(ctx):
-    return ctx.channel.id == channels["count"]
+    return ctx.channel.id in [channels["count"], channels["dev"]]
+
+
+lock = asyncio.Lock()
 
 
 class Count(commands.Cog, name="Some weird counting game"):
@@ -31,38 +36,39 @@ class Count(commands.Cog, name="Some weird counting game"):
     @commands.guild_only()
     @commands.check(onlyInCount)
     async def count(self, ctx):
-        self.count += 1
-        emoji = ":tada:" if (self.count == 100) else ":money_with_wings:"
-
-        await ctx.send(
-            embed=discord.Embed(
-                description=f"{emoji} {self.count}",
-                color=12745742,
-            )
-        )
-
-        if self.count >= 100:
-            points = 20
-            self.bot.get_cog("Points").addPoints(points, [ctx.author.id])
-            self.count = 0
+        async with lock:
+            self.count += 1
+            emoji = ":tada:" if (self.count == 100) else ":money_with_wings:"
 
             await ctx.send(
                 embed=discord.Embed(
-                    description=f"{points} points for {ctx.author.mention}!",
+                    description=f"{emoji} {self.count}",
                     color=12745742,
                 )
             )
 
-        elif self.count % 10 == 0:
-            points = 5
-            self.bot.get_cog("Points").addPoints(points, [ctx.author.id])
+            if self.count >= 100:
+                points = 20
+                self.bot.get_cog("Points").addPoints(points, [ctx.author.id])
+                self.count = 0
 
-            await ctx.send(
-                embed=discord.Embed(
-                    description=f"{points} points for {ctx.author.mention}!",
-                    color=12745742,
+                await ctx.send(
+                    embed=discord.Embed(
+                        description=f"{points} points for {ctx.author.mention}!",
+                        color=12745742,
+                    )
                 )
-            )
+
+            elif self.count % 10 == 0:
+                points = 5
+                self.bot.get_cog("Points").addPoints(points, [ctx.author.id])
+
+                await ctx.send(
+                    embed=discord.Embed(
+                        description=f"{points} points for {ctx.author.mention}!",
+                        color=12745742,
+                    )
+                )
 
     @commands.command()
     @commands.guild_only()
