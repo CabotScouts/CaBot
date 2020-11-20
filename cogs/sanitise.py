@@ -18,7 +18,9 @@ class Sanitiser(commands.Cog, name="Discord Chat Sanitiser"):
         if message.channel.id != channels["system"]:
             swearing = any(predict([message.content]))
             if swearing:
-                probability = round(predict_prob([message.content])[0], 2)
-                await message.guild.get_channel(channels["system"]).send(
-                    f'{message.author.mention} swore in {message.channel.mention}: "{message.content}" ({probability})'
-                )
+                probability = round(predict_prob([message.content])[0], 2) * 100
+
+                if probability > 85:
+                    await message.guild.get_channel(channels["system"]).send(
+                        f'{message.author.mention} swore in {message.channel.mention}: "{message.content}" ({probability}%)'
+                    )
