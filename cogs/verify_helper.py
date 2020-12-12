@@ -35,7 +35,7 @@ class VerifyHelper(commands.Cog, name="Discord Verification Helper"):
                     unit = member.guild.get_role(roles[verifier.unit])
                     await member.add_roles(unit)
 
-                verifier.delete()
+                verifier.delete_instance()
 
             else:
 
