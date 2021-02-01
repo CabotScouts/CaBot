@@ -53,3 +53,8 @@ class Roles(commands.Cog):
     @commands.guild_only()
     async def programmer(self, ctx):
         await self.toggleRole(ctx, "programmer")
+
+    @commands.command()
+    @commands.guild_only()
+    async def moot(self, ctx):
+        await self.toggleRole(ctx, "moot")
