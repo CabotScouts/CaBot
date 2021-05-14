@@ -132,6 +132,22 @@ class VerifyHelper(commands.Cog, name="Discord Verification Helper"):
                 f"<@{id}> will be verified when they next join the server ({name}, {role}{unitStr})"
             )
 
+            try:
+                user = await ctx.bot.fetch_user(id)
+                await user.send(
+                    "Hello there, you've now been verified on the Cabot Explorers' Discord Server - when you next visit you'll be able to access the server. If you need it, the link to re-join is https://cabotexplorers.org.uk/go/discord"
+                )
+
+            except (discord.HTTPException, discord.Forbidden) as e:
+                await ctx.send(
+                    f"*Oops, I tried to send a DM to <@{id}> but couldn't... ({e})*"
+                )
+
+        else:
+            await ctx.send(
+                f"Role {role} is not a valid role! Choose from `explorer`, `leader`, `network`."
+            )
+
     @verify.command()
     @commands.check(isAdmin)
     async def remove(self, ctx, id):
