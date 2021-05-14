@@ -12,8 +12,10 @@ roles = {
     "programmer": 702163719269908603,
     "moot": 805884316109766696,
     # Unit Roles
+    "ashley-down": 835230996421017610,
     "brabazon": 689272595501285594,
     "concorde": 689272629672280076,
+    "peregrines": 778722917365448745,
     "phoenix": 689272687742287920,
     "pirates": 689272653949042712,
     "spaniorum": 689272712061124668,
@@ -23,8 +25,10 @@ roles = {
 }
 
 units = [
+    "ashley-down",
     "brabazon",
     "concorde",
+    "peregrines",
     "phoenix",
     "pirates",
     "spaniorum",
