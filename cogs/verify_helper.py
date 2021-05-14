@@ -140,5 +140,8 @@ class VerifyHelper(commands.Cog, name="Discord Verification Helper"):
         verifier = Verifier.get(Verifier.discordID == id)
 
         if verifier:
-            verifier.delete()
+            verifier.delete_instance()
             await ctx.send(f"Verifier for <@{id}> ({verifier.name}) cleared")
+
+        else:
+            await ctx.send(f"No verifier found using with that user ID")

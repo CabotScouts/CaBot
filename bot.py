@@ -7,7 +7,7 @@ from peewee import SqliteDatabase
 
 load_dotenv()
 
-__version__ = "2.2.2"
+__version__ = "2.2.3"
 
 
 class CaBot(commands.Bot):
