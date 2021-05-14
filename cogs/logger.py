@@ -19,8 +19,14 @@ class Logger(commands.Cog, name="Discord Chat Logger"):
             discordID=message.author.id, defaults={"name": message.author.display_name}
         )
 
+        name = (
+            message.channel.name
+            if isinstance(message.channel, discord.TextChannel)
+            else "DM"
+        )
+
         channel, _ = Channel.get_or_create(
-            discordID=message.channel.id, defaults={"name": message.channel.name}
+            discordID=message.channel.id, defaults={"name": name}
         )
 
         message = Message.create(
