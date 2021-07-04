@@ -3,11 +3,12 @@ import os
 from dotenv import load_dotenv
 import discord
 from discord.ext import commands
-from peewee import SqliteDatabase
+
+from helpers import initDB
 
 load_dotenv()
 
-__version__ = "2.2.7"
+__version__ = "2.3"
 
 
 class CaBot(commands.Bot):
@@ -15,15 +16,16 @@ class CaBot(commands.Bot):
         self.prefix = options["command_prefix"]
         self.version = __version__
 
-        self.db = SqliteDatabase(options["db"])
+        self.db = options["db"]
         self.db.connect()
 
         super().__init__(**options)
 
 
 if __name__ == "__main__":
+
     bot = CaBot(
-        db=os.getenv("DB", ":memory:"),
+        db=initDB(),
         command_prefix=os.getenv("PREFIX", "?"),
         intents=discord.Intents.all(),
     )

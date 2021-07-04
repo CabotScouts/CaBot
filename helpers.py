@@ -1,4 +1,26 @@
+import os
+import datetime
+
+from dotenv import load_dotenv
+from peewee import SqliteDatabase, MySQLDatabase
+
 from server import roles
+
+
+def initDB():
+    db_type = os.getenv("DB", "sqlite")
+    if db_type == "sqlite":
+        db = SqliteDatabase(os.getenv("DB_FILE", ":memory:"))
+    elif db_type == "mysql":
+        db = MySQLDatabase(
+            os.getenv("DB_NAME"),
+            user=os.getenv("DB_USER"),
+            password=os.getenv("DB_PASSWORD"),
+            host=os.getenv("DB_HOST", "localhost"),
+            port=os.getenv("DB_PORT", 3306),
+        )
+
+    return db
 
 
 def hasRole(member, roleID):

@@ -4,9 +4,11 @@ import datetime
 from dotenv import load_dotenv
 from peewee import *
 
+from helpers import initDB
+
 load_dotenv()
 
-db = SqliteDatabase(os.getenv("DB"))
+db = initDB()
 
 
 class Base(Model):
