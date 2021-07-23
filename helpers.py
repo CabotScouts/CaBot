@@ -6,6 +6,8 @@ from peewee import SqliteDatabase, MySQLDatabase
 
 from server import roles
 
+load_dotenv()
+
 
 def initDB():
     db_type = os.getenv("DB", "sqlite")
