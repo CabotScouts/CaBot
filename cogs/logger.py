@@ -1,7 +1,9 @@
+import json
+
 import discord
 from discord.ext import commands
 
-from models import Message, Member, Channel
+from models import Channel, KeyValue, Member, Message
 from helpers import isAdmin
 
 
@@ -13,8 +15,24 @@ class Logger(commands.Cog, name="Discord Chat Logger"):
     def __init__(self, bot):
         self.bot = bot
 
+        self.store, stored = KeyValue.get_or_create(
+            key="logger_channels_ignore", defaults={"value": "[]"}
+        )
+
+        self.ignore = json.loads(self.store.value)
+
+    def cog_unload(self):
+        self.store.value = json.dumps(self.ignore)
+        self.store.save()
+
     @commands.Cog.listener()
     async def on_message(self, message):
+        if (
+            isinstance(message.channel, discord.TextChannel)
+            and message.channel.id in self.ignore
+        ):
+            return
+
         member, _ = Member.get_or_create(
             discordID=message.author.id, defaults={"name": message.author.display_name}
         )
@@ -49,3 +67,53 @@ class Logger(commands.Cog, name="Discord Chat Logger"):
 
         for message in messages:
             await ctx.send(f"{message.message}")
+
+    @log.command()
+    @commands.check(isAdmin)
+    async def exclude(self, ctx, mention=None):
+        if mention:
+            channel = discord.utils.get(ctx.guild.channels, mention=mention)
+
+        else:
+            channel = ctx.channel
+
+        if (
+            channel
+            and isinstance(channel, discord.TextChannel)
+            and channel.id not in self.ignore
+        ):
+            self.ignore.append(channel.id)
+            await ctx.send(f"{channel.mention} will now be ignored by the logger")
+
+    @log.command()
+    @commands.check(isAdmin)
+    async def include(self, ctx, mention=None):
+        if mention:
+            channel = discord.utils.get(ctx.guild.channels, mention=mention)
+
+        else:
+            channel = ctx.channel
+
+        if (
+            channel
+            and isinstance(channel, discord.TextChannel)
+            and channel.id in self.ignore
+        ):
+            self.ignore.remove(channel.id)
+            await ctx.send(f"{channel.mention} will now be included by the logger")
+
+    @log.command()
+    @commands.check(isAdmin)
+    async def channels(self, ctx):
+        if len(self.ignore) > 0:
+            channels = ", ".join(
+                [
+                    discord.utils.get(ctx.guild.channels, id=id).mention
+                    for id in self.ignore
+                ]
+            )
+
+            await ctx.send(f"Currently excluding {channels} from the chat logs")
+
+        else:
+            await ctx.send("No channels currently excluded from the chat logs")

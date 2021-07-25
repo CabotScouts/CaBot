@@ -21,6 +21,11 @@ class DevCommands(commands.Cog):
 
     @dev.command()
     @commands.check(isAdmin)
+    async def version(self, ctx):
+        await ctx.send(f":computer: CaBot v{self.bot.version}")
+
+    @dev.command()
+    @commands.check(isAdmin)
     async def host(self, ctx):
         host = os.uname()[1]
         await ctx.send(f":partying_face: CaBot v{self.bot.version} running on {host}")
