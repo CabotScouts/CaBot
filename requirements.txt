@@ -10,6 +10,7 @@ multidict==4.7.6
 numpy==1.20.3
 peewee==3.13.3
 -e git+https://github.com/owenjones/profanity-check.git@263fe9d62f084323ba224a5d13b18c65756550d5#egg=profanity_check
+PyMySQL==1.0.2
 python-dotenv==0.14.0
 scikit-learn==0.24.2
 scipy==1.6.3
