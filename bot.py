@@ -3,12 +3,15 @@ import os
 from dotenv import load_dotenv
 import discord
 from discord.ext import commands
+from gevent import monkey
+
+monkey.patch_socket()
 
 from helpers import initDB
 
 load_dotenv()
 
-__version__ = "2.3.3"
+__version__ = "2.3.4"
 
 
 class CaBot(commands.Bot):
