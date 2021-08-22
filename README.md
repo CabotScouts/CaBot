@@ -10,3 +10,4 @@ The original bot was thrown together in JavaScript ([final commit of that versio
 * v2.0 - September 2020 rewrite
 * v2.1 - Offline member verification added
 * v2.2 - Re-added message sanitisation using updated `profanity-check` module
+* v2.3 - MySQL added as a possible database engine
