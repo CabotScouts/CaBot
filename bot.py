@@ -1,11 +1,12 @@
 import os
 
-from dotenv import load_dotenv
-import discord
-from discord.ext import commands
 from gevent import monkey
 
 monkey.patch_socket()
+
+from dotenv import load_dotenv
+import discord
+from discord.ext import commands
 
 from helpers import initDB
 

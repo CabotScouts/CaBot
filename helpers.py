@@ -1,6 +1,10 @@
 import os
 import datetime
 
+from gevent import monkey
+
+monkey.patch_socket()
+
 from dotenv import load_dotenv
 from peewee import SqliteDatabase, MySQLDatabase
 
