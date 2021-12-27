@@ -4,11 +4,10 @@ import datetime
 from dotenv import load_dotenv
 from peewee import *
 
-from helpers import initDB
+from db import db
 
 load_dotenv()
-
-db = initDB()
+db = db()
 
 
 class Base(Model):
@@ -17,7 +16,7 @@ class Base(Model):
 
 
 class KeyValue(Base):
-    key = TextField(unique=True)
+    key = CharField(unique=True)
     value = TextField(null=True)
 
     class Meta:

@@ -1,38 +1,32 @@
 import os
 
-from gevent import monkey
-
-monkey.patch_socket()
-
 from dotenv import load_dotenv
 import discord
 from discord.ext import commands
 
-from helpers import initDB
+from db import async_db
 
 load_dotenv()
 
-__version__ = "2.3.4"
+__version__ = "2.3.5"
 
 
 class CaBot(commands.Bot):
     def __init__(self, **options):
         self.prefix = options["command_prefix"]
         self.version = __version__
-
-        self.db = options["db"]
-        self.db.connect()
-
+        self.db = async_db()
         super().__init__(**options)
 
 
 if __name__ == "__main__":
 
     bot = CaBot(
-        db=initDB(),
         command_prefix=os.getenv("PREFIX", "?"),
         intents=discord.Intents.all(),
     )
+
+    bot.loop.create_task(bot.db.connect())
 
     bot.load_extension("cogs.base")
     bot.load_extension("cogs.dev")
