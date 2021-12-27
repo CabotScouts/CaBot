@@ -1,4 +1,5 @@
 aiohttp==3.6.2
+aiomysql==0.0.22
 async-timeout==3.0.1
 attrs==20.2.0
 chardet==3.0.4
@@ -11,8 +12,9 @@ joblib==1.0.1
 multidict==4.7.6
 numpy==1.20.3
 peewee==3.13.3
+peewee-async==0.7.2
 -e git+https://github.com/owenjones/profanity-check.git@263fe9d62f084323ba224a5d13b18c65756550d5#egg=profanity_check
-PyMySQL==1.0.2
+PyMySQL==0.9.3
 python-dotenv==0.14.0
 scikit-learn==0.24.2
 scipy==1.6.3
