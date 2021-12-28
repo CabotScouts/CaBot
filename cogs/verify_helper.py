@@ -24,7 +24,9 @@ class VerifyHelper(commands.Cog, name="Discord Verification Helper"):
             or hasRole(member, roles["leader"])
         ):
 
-            verifier = Verifier.get_or_none(Verifier.discordID == member.id)
+            verifier = await self.bot.db.get_or_none(
+                Verifier, Verifier.discordID == member.id
+            )
 
             if verifier:
                 role = member.guild.get_role(roles[verifier.role])
@@ -96,9 +98,9 @@ class VerifyHelper(commands.Cog, name="Discord Verification Helper"):
     async def list(self, ctx):
         """List currently setup verifiers"""
 
-        verifiers = Verifier.select()
+        verifiers = await self.bot.db.execute(Verifier.select())
 
-        if verifiers.count() > 0:
+        if len(verifiers) > 0:
             list = ""
             for verifier in verifiers:
                 unit = f" ({verifier.unit})" if verifier.unit else ""
@@ -117,8 +119,10 @@ class VerifyHelper(commands.Cog, name="Discord Verification Helper"):
         if role in ["explorer", "leader", "network"]:
             unit = unit if unit in units else None
 
-            verifier, created = Verifier.get_or_create(
-                discordID=id, defaults={"name": name, "role": role, "unit": unit}
+            verifier, created = await self.bot.db.get_or_create(
+                Verifier,
+                discordID=id,
+                defaults={"name": name, "role": role, "unit": unit},
             )
 
             if not created:
@@ -153,7 +157,7 @@ class VerifyHelper(commands.Cog, name="Discord Verification Helper"):
     async def remove(self, ctx, id):
         """Remove an offline user verifier"""
 
-        verifier = Verifier.get(Verifier.discordID == id)
+        verifier = await self.bot.db.get(Verifier, Verifier.discordID == id)
 
         if verifier:
             verifier.delete_instance()

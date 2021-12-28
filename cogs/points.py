@@ -21,21 +21,21 @@ class Points(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    def addPoints(self, points, IDs):
+    async def addPoints(self, points, IDs):
         for ID in IDs:
-            member, _ = Member.get_or_create(discordID=ID)
+            member, _ = await self.bot.db.get_or_create(Member, discordID=ID)
             member.points += points
             member.save()
 
-    def removePoints(self, points, IDs):
+    async def removePoints(self, points, IDs):
         for ID in IDs:
-            member, _ = Member.get_or_create(discordID=ID)
+            member, _ = await self.bot.db.get_or_create(Member, discordID=ID)
             member.points -= points
             member.save()
 
-    def setPoints(self, points, IDs):
+    async def setPoints(self, points, IDs):
         for ID in IDs:
-            member, _ = Member.get_or_create(discordID=ID)
+            member, _ = await self.bot.db.get_or_create(Member, discordID=ID)
             member.points = points
             member.save()
 
@@ -48,7 +48,7 @@ class Points(commands.Cog):
         plural = "points" if (points == 0 or points > 1) else "point"
         IDs = [member.id for member in members]
         mentions = ", ".join([member.mention for member in members])
-        self.addPoints(points, IDs)
+        await self.addPoints(points, IDs)
 
         await ctx.send(f":coin: Gave {points} {plural} to {mentions}")
 
@@ -61,7 +61,7 @@ class Points(commands.Cog):
         plural = "points" if (points == 0 or points > 1) else "point"
         IDs = [member.id for member in members]
         mentions = ", ".join([member.mention for member in members])
-        self.removePoints(points, IDs)
+        await self.removePoints(points, IDs)
 
         await ctx.send(f":coin: Removed {points} {plural} from {mentions}")
 
@@ -73,21 +73,26 @@ class Points(commands.Cog):
         points = pointsFromArgs(args, members) or 0
         IDs = [member.id for member in members]
         mentions = ", ".join([member.mention for member in members])
-        self.setPoints(points, IDs)
+        await self.setPoints(points, IDs)
 
         await ctx.send(f":coin: Set points to {points} for {mentions}")
 
     @commands.command(aliases=["board"])
     @commands.guild_only()
     async def leaderboard(self, ctx, *arg):
-        members = (
-            Member.select().where(Member.points > 0).order_by(Member.points.desc())
-        )
-
         if (len(arg) == 0) or (len(arg) > 0 and arg[0] != "all"):
-            members = members.limit(3)
+            members = await self.bot.db.execute(
+                Member.select()
+                .where(Member.points > 0)
+                .order_by(Member.points.desc())
+                .limit(3)
+            )
+        else:
+            members = await self.bot.db.execute(
+                Member.select().where(Member.points > 0).order_by(Member.points.desc())
+            )
 
-        if members.count() > 0:
+        if len(members) > 0:
             medals = [":first_place:", ":second_place:", ":third_place:"]
             board = discord.Embed(color=3447003)
 
@@ -118,5 +123,5 @@ class Points(commands.Cog):
     @commands.guild_only()
     @commands.check(isAdmin)
     async def clearpoints(self, ctx):
-        Member.update(points=0).execute()
+        await self.bot.db.execute(Member.update(points=0))
         await ctx.send("The leaderboard has been cleared")

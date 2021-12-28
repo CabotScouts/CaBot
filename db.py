@@ -28,6 +28,6 @@ def async_db():
         return db()
     else:
         d = db()
-        d.set_allow_sync(False)
         async_db = peewee_async.Manager(d)
+        async_db.database.set_allow_sync(False)
         return async_db

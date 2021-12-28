@@ -33,8 +33,10 @@ class Logger(commands.Cog, name="Discord Chat Logger"):
         ):
             return
 
-        member, _ = Member.get_or_create(
-            discordID=message.author.id, defaults={"name": message.author.display_name}
+        member, _ = await self.bot.db.get_or_create(
+            Member,
+            discordID=message.author.id,
+            defaults={"name": message.author.display_name},
         )
 
         name = (
@@ -43,11 +45,12 @@ class Logger(commands.Cog, name="Discord Chat Logger"):
             else "DM"
         )
 
-        channel, _ = Channel.get_or_create(
-            discordID=message.channel.id, defaults={"name": name}
+        channel, _ = await self.bot.db.get_or_create(
+            Channel, discordID=message.channel.id, defaults={"name": name}
         )
 
-        message = Message.create(
+        message = await self.bot.db.create(
+            Message,
             discordID=message.id,
             member=member,
             channel=channel,
@@ -63,7 +66,9 @@ class Logger(commands.Cog, name="Discord Chat Logger"):
     @log.command()
     @commands.check(isAdmin)
     async def tail(self, ctx, num=5):
-        messages = Message.select().order_by(Message.timestamp.desc()).limit(num)
+        messages = await self.bot.db.execute(
+            Message.select().order_by(Message.timestamp.desc()).limit(num)
+        )
 
         for message in messages:
             await ctx.send(f"{message.message}")

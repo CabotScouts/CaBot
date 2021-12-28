@@ -1,4 +1,5 @@
 import os
+import asyncio
 
 from dotenv import load_dotenv
 import discord
@@ -8,7 +9,7 @@ from db import async_db
 
 load_dotenv()
 
-__version__ = "2.3.5"
+__version__ = "2.3.6"
 
 
 class CaBot(commands.Bot):

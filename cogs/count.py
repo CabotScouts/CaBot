@@ -49,7 +49,7 @@ class Count(commands.Cog, name="Some weird counting game"):
 
             if self.count >= 100:
                 points = 20
-                self.bot.get_cog("Points").addPoints(points, [ctx.author.id])
+                await self.bot.get_cog("Points").addPoints(points, [ctx.author.id])
                 self.count = 0
 
                 await ctx.send(
