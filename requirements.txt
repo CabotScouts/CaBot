@@ -10,7 +10,7 @@ greenlet==1.1.1
 idna==2.10
 joblib==1.0.1
 multidict==4.7.6
-numpy==1.20.3
+numpy==1.22.0
 peewee==3.13.3
 peewee-async==0.7.2
 -e git+https://github.com/owenjones/profanity-check.git@263fe9d62f084323ba224a5d13b18c65756550d5#egg=profanity_check
