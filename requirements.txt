@@ -17,7 +17,7 @@ peewee-async==0.7.2
 PyMySQL==0.9.3
 python-dotenv==0.14.0
 scikit-learn==0.24.2
-scipy==1.6.3
+scipy==1.10.0
 threadpoolctl==2.1.0
 yarl==1.6.0
 zope.event==4.5.0
